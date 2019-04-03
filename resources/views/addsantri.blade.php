@@ -21,7 +21,7 @@
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{asset('material/assets/img/sidebar-1.jpg')}}">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -29,20 +29,19 @@
     -->
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Ahaf-Pay
+        Ahaf-Pay
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          
-          <li class="nav-item active ">
+        <li class="nav-item  ">
             <a class="nav-link" href="index">
               <i class="material-icons">content_paste</i>
               <p>Data Pembayaran</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="addpay">
+          <li class="nav-item  ">
+            <a class="nav-link" href="./user.html">
             <i class="material-icons">library_books</i>
               <p>Tambah Pembayaran</p>
             </a>
@@ -53,13 +52,12 @@
               <p>Data Santri</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="addsantri">
               <i class="material-icons">person</i>
               <p>Tambah Santri</p>
             </a>
           </li>
-          
         </ul>
       </div>
     </div>
@@ -68,7 +66,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Welcome, Ahaf-Pay</a>
+            <a class="navbar-brand" href="#pablo">Ahaf-Pay/Tambah</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -133,52 +131,58 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Data Pembayaran</h4>
-                  <p class="card-category"> Syahriah bulanan santri Al-Hikmah Al-Fathimiyyah</p>
+                  <h4 class="card-title">Tambah Data Santri</h4>
+                  <p class="card-category">Syahriah bulanan PPP. Al-Hikmah Al-Fathimiyyah</p>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>Id_Pembayaran</th>
-                        <th>Id_santri</th>
-                        <th>Id_admin</th>
-                        <th>Tanggal</th>
-                        <th>Bulan</th>
-                        <th>Nominal</th>
-                        <th>Action</th>
-                      </thead>
-                      <tbody>
-                      @foreach($pembayaran as $p)
-		                  <tr>
-			                <td>{{ $p->id_pembayaran }}</td>
-			                <td>{{ $p->id_santri }}</td>
-			                <td>{{ $p->id_admin}}</td>
-		                	<td>{{ $p->tanggal}}</td>
-                      <td>{{ $p->bulan}}</td>
-                      <td>{{ $p->nominal}}</td>
-		                	<td>
-			              	<a href="editpay/{{ $p->id_pembayaran }}">Edit</a>
-				|
-			              	<a href="hapuspay/{{ $p->id_pembayaran }}">Hapus</a>
-		                	</td>
-		                  </tr>
-                      @endforeach
-                        
-                      </tbody>
-                    </table>
+                  <form method="post" action=tambahsantri>
+                  {{ csrf_field() }}
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Id Santri</label>
+                          <input type="text" class="form-control" name="id_santri">
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Nama Santri</label>
+                          <input type="text" class="form-control" name="nama_santri">
+                        </div>
+                      </div>
+                    </div>  
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Kamar</label>
+                          <input type="text" class="form-control" name="kamar">
+                        </div>
+                      </div>
+                    </div> 
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Tanggal_masuk</label>
+                          <input type="date" class="form-control" name="tanggal_masuk">
+                        </div>
+                      </div>
+                    </div>
+                   
+                    
+                    
+                    <button type="submit" class="btn btn-primary pull-right">Tambah Santri</button>
+                    <div class="clearfix"></div>
+                  </form>
                 </div>
               </div>
             </div>
-            <div class="col-md-12">
-              
-              
-            </div>
+            <div class="col-md-4">
+</div>
           </div>
         </div>
       </div>
@@ -187,8 +191,8 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
+                <a href="index">
+                  Ahaf-Pay
                 </a>
               </li>
               <li>

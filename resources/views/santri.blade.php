@@ -35,19 +35,19 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           
-          <li class="nav-item active ">
+          <li class="nav-item ">
             <a class="nav-link" href="index">
               <i class="material-icons">content_paste</i>
               <p>Data Pembayaran</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="addpay">
+            <a class="nav-link" href="./user.html">
             <i class="material-icons">library_books</i>
               <p>Tambah Pembayaran</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="santri">
               <i class="material-icons">content_paste</i>
               <p>Data Santri</p>
@@ -136,34 +136,31 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Data Pembayaran</h4>
-                  <p class="card-category"> Syahriah bulanan santri Al-Hikmah Al-Fathimiyyah</p>
+                  <h4 class="card-title ">Data Santri</h4>
+                  <p class="card-category"> Data santri Al-Hikmah Al-Fathimiyyah</p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">
-                        <th>Id_Pembayaran</th>
-                        <th>Id_santri</th>
-                        <th>Id_admin</th>
-                        <th>Tanggal</th>
-                        <th>Bulan</th>
-                        <th>Nominal</th>
+                        <th>Id_Santri</th>
+                        <th>Nama Santri</th>
+                        <th>Kamar</th>
+                        <th>Tanggal masuk</th>
                         <th>Action</th>
+                        
                       </thead>
                       <tbody>
-                      @foreach($pembayaran as $p)
+                      @foreach($data as $p)
 		                  <tr>
-			                <td>{{ $p->id_pembayaran }}</td>
 			                <td>{{ $p->id_santri }}</td>
-			                <td>{{ $p->id_admin}}</td>
-		                	<td>{{ $p->tanggal}}</td>
-                      <td>{{ $p->bulan}}</td>
-                      <td>{{ $p->nominal}}</td>
+			                <td>{{ $p->nama_santri }}</td>
+			                <td>{{ $p->kamar}}</td>
+		                	<td>{{ $p->tanggal_masuk}}</td>
 		                	<td>
-			              	<a href="editpay/{{ $p->id_pembayaran }}">Edit</a>
+			              	<a href="editsantri/{{ $p->id_santri }}">Edit</a>
 				|
-			              	<a href="hapuspay/{{ $p->id_pembayaran }}">Hapus</a>
+			              	<a href="hapussantri/{{ $p->id_santri }}">Hapus</a>
 		                	</td>
 		                  </tr>
                       @endforeach
