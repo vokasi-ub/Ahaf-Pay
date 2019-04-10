@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Pembayaran;
+use App\Santri;
+use DB;
 
 class IndexController extends Controller
 {
@@ -12,14 +16,43 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function redirect(){
+        if(!Session::get('login')){
+            return redirect('login')->with('alert','Kamu harus login dulu');
+        }
+        else{
+            return view('index');
+        }
+
+        
+    }
+    
+
     public function index()
     {
-        $pembayaran = Pembayaran::all();
-        return view('index', compact('pembayaran'));
+
+        
+            $pembayaran = Pembayaran::all();
+            return view('index', compact('pembayaran'));
+        
+       
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+
+        $pembayaran = Pembayaran::where('bulan', 'like', "%".$cari."%")
+        ->paginate();
+
+        return view('index',['pembayaran' => $pembayaran]);
     }
 
     public function tambah(){
-        return view('addpay');
+        
+            return view('addpay');
+        
+       
     }
 
     public function add(Request $request)
@@ -41,9 +74,81 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function queri()
     {
-        //
+        $januari = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Januari')
+        ->get();
+
+        $februari = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Februari')
+        ->get();
+
+        $maret = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Maret')
+        ->get();
+
+        $april = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','April')
+        ->get();
+
+        $mei = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Mei')
+        ->get();
+
+        $juni = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Juni')
+        ->get();
+
+        $juli = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Juli')
+        ->get();
+
+        $agustus = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Agustus')
+        ->get();
+
+        $september = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','September')
+        ->get();
+
+        $oktober = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Oktober')
+        ->get();
+
+        $nopember = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Nopember')
+        ->get();
+
+        $desember = Santri::select('santri.nama_santri', 'pembayaran.bulan')
+        ->join('pembayaran', 'pembayaran.id_santri','=','santri.id_santri')
+        ->where('pembayaran.bulan','Desember')
+        ->get();
+
+
+
+        return view('dashboard', compact('januari','februari','maret','april','mei','juni','juli','agustus',
+                                            'september','oktober','nopember','desember'));
+    }
+
+    public function rekap()
+    {
+        $rekap = Pembayaran::select('bulan',DB::raw('SUM(nominal) as Jumlah'))
+        ->groupBy('bulan')
+        ->get();
+
+        return view('rekap', compact('rekap'));
     }
 
     /**

@@ -32,27 +32,15 @@
         Ahaf-Pay
         </a>
       </div>
-      <div class="sidebar-wrapper">
+     <div class="sidebar-wrapper">
         <ul class="nav">
-        <li class="nav-item  ">
-            <a class="nav-link" href="/">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item  ">
-            <a class="nav-link" href="rekap">
-              <i class="material-icons">dashboard</i>
-              <p>Rekap Pemasukan</p>
-            </a>
-          </li>
-        <li class="nav-item  ">
+      <!--  <li class="nav-item  ">
             <a class="nav-link" href="index">
               <i class="material-icons">content_paste</i>
               <p>Data Pembayaran</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="./user.html">
             <i class="material-icons">library_books</i>
               <p>Tambah Pembayaran</p>
@@ -81,7 +69,7 @@
             <i class="material-icons">notifications</i>
               <p>Tambah Perizinan</p>
             </a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
@@ -90,7 +78,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Ahaf-Pay/Tambah</a>
+            <a class="navbar-brand" href="#pablo">Ahaf-Pay/Login</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -101,7 +89,7 @@
           <div class="collapse navbar-collapse justify-content-end">
             <form class="navbar-form" action="searchpay" method="GET">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Bulan..." name="cari">
+                <input type="text" value="" class="form-control" placeholder="Bulan ..." name="cari">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -134,7 +122,7 @@
                 </div>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="logout" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
@@ -144,80 +132,43 @@
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="logout">Log out</a>
+                  <a class="dropdown-item" href="#">Log out</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <!-- End Navbar -->
-      <div class="content">
+      <!-- End Navbar --> 
+      
+     <div class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Tambah Data Pembayaran</h4>
-                  <p class="card-category">Syahriah bulanan PPP. Al-Hikmah Al-Fathimiyyah</p>
+                  <h4 class="card-title">Login</h4>
+                  <p class="card-category">Form Login</p>
                 </div>
                 <div class="card-body">
-                @foreach($pembayaran as $p)
-                  <form method="post" action=/updatepay>
-                  {{ csrf_field() }}
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Id Pembayaran</label>
-                          <input type="text" class="form-control" name="id_pembayaran" required="required" value="{{ $p->id_pembayaran }}">
-                        </div>
-                      </div>
+                <form method="POST" action="/login">
+                {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username" name="username">
+                        
                     </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Id Santri</label>
-                          <input type="text" class="form-control" name="id_santri" required="required" value="{{ $p->id_santri }}">
-                        </div>
-                      </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
                     </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Id Admin</label>
-                          <input type="text" class="form-control" name="id_admin" required="required" value="{{ $p->id_admin }}">
-                        </div>
-                      </div>
-                    </div>   
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Tanggal Bayar</label>
-                          <input type="date" class="form-control" name="tanggal" required="required" value="{{ $p->tanggal }}">
-                        </div>
-                      </div>
+            
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button  href="register" class="btn btn-warning"><a href="register">Register</a></button>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Bulan</label>
-                          <input type="text" class="form-control" name="bulan" required="required" value="{{ $p->bulan }}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Nominal</label>
-                          <input type="text" class="form-control"  name="nominal" required="required" value="{{ $p->nominal }}">
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary pull-right">Update Pembayaran</button>
-                    <div class="clearfix"></div>
-                  </form>
-                  @endforeach
+                    </form>
+                 
                 </div>
               </div>
             </div>
@@ -226,6 +177,7 @@
           </div>
         </div>
       </div>
+     
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">

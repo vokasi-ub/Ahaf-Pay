@@ -21,7 +21,7 @@
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{asset('material/assets/img/sidebar-1.jpg')}}">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -29,7 +29,7 @@
     -->
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Ahaf-Pay
+          Ahaf-Pay
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -46,19 +46,19 @@
               <p>Rekap Pemasukan</p>
             </a>
           </li>
-        <li class="nav-item  ">
+          <li class="nav-item ">
             <a class="nav-link" href="index">
               <i class="material-icons">content_paste</i>
               <p>Data Pembayaran</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link" href="addpay">
             <i class="material-icons">library_books</i>
               <p>Tambah Pembayaran</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item  ">
             <a class="nav-link" href="santri">
               <i class="material-icons">content_paste</i>
               <p>Data Santri</p>
@@ -70,7 +70,7 @@
               <p>Tambah Santri</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="izin">
               <i class="material-icons">content_paste</i>
               <p>Data Perizinan</p>
@@ -90,7 +90,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Ahaf-Pay/Tambah</a>
+            <a class="navbar-brand" href="#pablo">Welcome, Ahaf-Pay</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -99,9 +99,9 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form" action="searchpay" method="GET">
+            <form class="navbar-form" action="searchizin" method="GET">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Bulan..." name="cari">
+                <input type="text" value="" class="form-control" placeholder="Nama Santri..." name="cari">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -134,7 +134,7 @@
                 </div>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="logout" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/logout" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
@@ -155,84 +155,58 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Tambah Data Pembayaran</h4>
-                  <p class="card-category">Syahriah bulanan PPP. Al-Hikmah Al-Fathimiyyah</p>
+                  <h4 class="card-title ">Data Perizinan</h4>
+                  <p class="card-category"> Data perizinan santri Al-Hikmah Al-Fathimiyyah</p>
                 </div>
                 <div class="card-body">
-                @foreach($pembayaran as $p)
-                  <form method="post" action=/updatepay>
-                  {{ csrf_field() }}
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Id Pembayaran</label>
-                          <input type="text" class="form-control" name="id_pembayaran" required="required" value="{{ $p->id_pembayaran }}">
-                        </div>
-                      </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>Id Izin</th>
+                        <th>Id Santri</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Selesai</th>
+                        <th>Keterangan</th>
+                        <th>Action</th>
+                        
+                      </thead>
+                      <tbody>
+                      @foreach($perizinan as $p)
+		                  <tr>
+			                <td>{{ $p->id_izin }}</td>
+			                <td>{{ $p->id_santri }}</td>
+			                <td>{{ $p->tanggal_mulai}}</td>
+		                	<td>{{ $p->tanggal_selesai}}</td>
+                            <td>{{ $p->keterangan }}</td>
+		                	<td>
+			              	<a href="editizin/{{ $p->id_izin }}">Edit</a>
+				|
+			              	<a href="hapusizin/{{ $p->id_izin }}">Hapus</a>
+		                	</td>
+		                  </tr>
+                      @endforeach
+                        
+                      </tbody>
+                    </table>
                     </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Id Santri</label>
-                          <input type="text" class="form-control" name="id_santri" required="required" value="{{ $p->id_santri }}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Id Admin</label>
-                          <input type="text" class="form-control" name="id_admin" required="required" value="{{ $p->id_admin }}">
-                        </div>
-                      </div>
-                    </div>   
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Tanggal Bayar</label>
-                          <input type="date" class="form-control" name="tanggal" required="required" value="{{ $p->tanggal }}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Bulan</label>
-                          <input type="text" class="form-control" name="bulan" required="required" value="{{ $p->bulan }}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Nominal</label>
-                          <input type="text" class="form-control"  name="nominal" required="required" value="{{ $p->nominal }}">
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary pull-right">Update Pembayaran</button>
-                    <div class="clearfix"></div>
-                  </form>
-                  @endforeach
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-</div>
-          </div>
-        </div>
-      </div>
+            <div class="col-md-12">
+              
+              
+            
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
             <ul>
               <li>
-                <a href="index">
-                  Ahaf-Pay
+                <a href="https://www.creative-tim.com">
+                  Creative Tim
                 </a>
               </li>
               <li>

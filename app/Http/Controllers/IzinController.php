@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Santri;
+use App\Izin;
 
-class SantriController extends Controller
+class IzinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,35 +14,36 @@ class SantriController extends Controller
      */
     public function index()
     {
-        $data = Santri::all();
-        return view('santri', compact('data'));
+        $perizinan = Izin::all();
+        return view('izin', compact('perizinan'));
     }
 
     public function cari(Request $request)
     {
         $cari = $request->cari;
 
-        $data = Santri::where('nama_santri', 'like', "%".$cari."%")
+        $perizinan = Izin::where('nama_santri', 'like', "%".$cari."%")
         ->paginate();
 
-        return view('santri',['data' => $data]);
+        return view('izin',['perizinan' => $perizinan]);
     }
 
     public function tambah()
     {
-        return view('addsantri');
+        return view('addizin');
     }
 
     public function add(Request $request)
     {
-        Santri::insert([
+        Izin::insert([
+            'id_izin' => $request->id_izin,
             'id_santri' => $request->id_santri,
-            'nama_santri' => $request->nama_santri,
-            'kamar' => $request->kamar,
-            'tanggal_masuk' => $request->tanggal_masuk
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'keterangan' => $request->keterangan
         ]);
 
-        return redirect('santri');
+        return redirect('izin');
     }
 
     /**
@@ -85,9 +86,9 @@ class SantriController extends Controller
      */
     public function edit($id)
     {
-        $data=Santri::where('id_santri',$id)->get();
+        $perizinan=Izin::where('id_izin',$id)->get();
         
-        return view('editsantri',['data' => $data]);
+        return view('editizin',['perizinan' => $perizinan]);
     }
 
     /**
@@ -99,15 +100,18 @@ class SantriController extends Controller
      */
     public function update(Request $request)
     {
-        Santri::where('id_santri', $request->id_santri)->update([
-            'id_santri'=> $request->id_santri,
-            'nama_santri' =>$request->nama_santri,
-            'kamar' => $request->kamar,
-            'tanggal_masuk' => $request->tanggal_masuk
+        Izin::where('id_izin', $request->id_izin)->update([
+            'id_izin' => $request->id_izin,
+            'id_santri' => $request->id_santri,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'keterangan' => $request->keterangan
         ]);
 
-        return redirect('santri');
+        return redirect('izin');
     }
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -117,8 +121,8 @@ class SantriController extends Controller
      */
     public function delete($id)
     {
-        Santri::where('id_santri', $id)->delete();
+        Izin::where('id_izin', $id)->delete();
 
-        return redirect('santri');
+        return redirect('izin');
     }
 }

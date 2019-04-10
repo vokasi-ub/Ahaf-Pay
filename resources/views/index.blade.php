@@ -34,19 +34,32 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          
+        <li class="nav-item  ">
+            <a class="nav-link" href="/">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item  ">
+            <a class="nav-link" href="rekap">
+              <i class="material-icons">dashboard</i>
+              <p>Rekap Pemasukan</p>
+            </a>
+          </li>
           <li class="nav-item active ">
             <a class="nav-link" href="index">
               <i class="material-icons">content_paste</i>
               <p>Data Pembayaran</p>
             </a>
           </li>
+        
           <li class="nav-item ">
             <a class="nav-link" href="addpay">
             <i class="material-icons">library_books</i>
               <p>Tambah Pembayaran</p>
             </a>
           </li>
+       
           <li class="nav-item ">
             <a class="nav-link" href="santri">
               <i class="material-icons">content_paste</i>
@@ -59,7 +72,18 @@
               <p>Tambah Santri</p>
             </a>
           </li>
-          
+          <li class="nav-item ">
+            <a class="nav-link" href="izin">
+              <i class="material-icons">content_paste</i>
+              <p>Data Perizinan</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="addizin">
+            <i class="material-icons">notifications</i>
+              <p>Tambah Perizinan</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -77,9 +101,9 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
+            <form class="navbar-form" action="searchpay" method="GET">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="text" value="" class="form-control" placeholder="Bulan..." name="cari">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -95,6 +119,7 @@
                   </p>
                 </a>
               </li>
+              
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
@@ -112,7 +137,7 @@
                 </div>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="logout" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
@@ -122,7 +147,7 @@
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="logout">Log out</a>
                 </div>
               </li>
             </ul>
@@ -178,10 +203,7 @@
             <div class="col-md-12">
               
               
-            </div>
-          </div>
-        </div>
-      </div>
+           
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">

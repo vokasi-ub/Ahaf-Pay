@@ -32,27 +32,15 @@
         Ahaf-Pay
         </a>
       </div>
-      <div class="sidebar-wrapper">
+     <div class="sidebar-wrapper">
         <ul class="nav">
-        <li class="nav-item  ">
-            <a class="nav-link" href="/">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item  ">
-            <a class="nav-link" href="rekap">
-              <i class="material-icons">dashboard</i>
-              <p>Rekap Pemasukan</p>
-            </a>
-          </li>
-        <li class="nav-item  ">
+      <!--  <li class="nav-item  ">
             <a class="nav-link" href="index">
               <i class="material-icons">content_paste</i>
               <p>Data Pembayaran</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="./user.html">
             <i class="material-icons">library_books</i>
               <p>Tambah Pembayaran</p>
@@ -81,7 +69,7 @@
             <i class="material-icons">notifications</i>
               <p>Tambah Perizinan</p>
             </a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
@@ -90,7 +78,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Ahaf-Pay/Tambah</a>
+            <a class="navbar-brand" href="#pablo">Ahaf-Pay/Register</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -101,7 +89,7 @@
           <div class="collapse navbar-collapse justify-content-end">
             <form class="navbar-form" action="searchpay" method="GET">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Bulan..." name="cari">
+                <input type="text" value="" class="form-control" placeholder="Bulan ..." name="cari">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -134,7 +122,7 @@
                 </div>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="logout" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
@@ -144,32 +132,65 @@
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="logout">Log out</a>
+                  <a class="dropdown-item" href="#">Log out</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <!-- End Navbar -->
-      <div class="content">
+      <!-- End Navbar --> 
+      
+     <div class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Tambah Data Pembayaran</h4>
-                  <p class="card-category">Syahriah bulanan PPP. Al-Hikmah Al-Fathimiyyah</p>
+                  <h4 class="card-title">Register</h4>
+                  <p class="card-category">Form Register</p>
                 </div>
                 <div class="card-body">
-                @foreach($pembayaran as $p)
-                  <form method="post" action=/updatepay>
+                <form method="POST" action="/register">
+                {{ csrf_field() }}
+                     <div class="form-group">
+                        <label >Id Admin</label>
+                        <input type="text" class="form-control"  name="id_admin"  placeholder="Enter Id Admin">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label >Nama Admin</label>
+                        <input type="text" class="form-control"  name="nama_admin"  placeholder="Enter Nama Admin">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label >Username</label>
+                        <input type="text" class="form-control"  name="username"  placeholder="Enter username">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="">
+                                Option one is this
+                            <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                 <!-- <form method="post" action=tambah>
                   {{ csrf_field() }}
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Id Pembayaran</label>
-                          <input type="text" class="form-control" name="id_pembayaran" required="required" value="{{ $p->id_pembayaran }}">
+                          <input type="text" class="form-control" name="id_pembayaran" disabled>
                         </div>
                       </div>
                     </div>
@@ -177,7 +198,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Id Santri</label>
-                          <input type="text" class="form-control" name="id_santri" required="required" value="{{ $p->id_santri }}">
+                          <input type="text" class="form-control" name="id_santri">
                         </div>
                       </div>
                     </div>
@@ -185,7 +206,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Id Admin</label>
-                          <input type="text" class="form-control" name="id_admin" required="required" value="{{ $p->id_admin }}">
+                          <input type="text" class="form-control" name="id_admin">
                         </div>
                       </div>
                     </div>   
@@ -193,7 +214,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Tanggal Bayar</label>
-                          <input type="date" class="form-control" name="tanggal" required="required" value="{{ $p->tanggal }}">
+                          <input type="date" class="form-control" name="tanggal">
                         </div>
                       </div>
                     </div>
@@ -201,7 +222,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Bulan</label>
-                          <input type="text" class="form-control" name="bulan" required="required" value="{{ $p->bulan }}">
+                          <input type="text" class="form-control" name="bulan">
                         </div>
                       </div>
                     </div>
@@ -209,15 +230,14 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Nominal</label>
-                          <input type="text" class="form-control"  name="nominal" required="required" value="{{ $p->nominal }}">
+                          <input type="text" class="form-control"  name="nominal">
                         </div>
                       </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary pull-right">Update Pembayaran</button>
+                    <button type="submit" class="btn btn-primary pull-right">Tambah Pembayaran</button>
                     <div class="clearfix"></div>
-                  </form>
-                  @endforeach
+                  </form>-->
                 </div>
               </div>
             </div>
@@ -226,6 +246,7 @@
           </div>
         </div>
       </div>
+     
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">

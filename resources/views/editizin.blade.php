@@ -52,8 +52,8 @@
               <p>Data Pembayaran</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+          <li class="nav-item  ">
+            <a class="nav-link" href="addpay">
             <i class="material-icons">library_books</i>
               <p>Tambah Pembayaran</p>
             </a>
@@ -76,7 +76,7 @@
               <p>Data Perizinan</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="addizin">
             <i class="material-icons">notifications</i>
               <p>Tambah Perizinan</p>
@@ -99,9 +99,9 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form" action="searchpay" method="GET">
+            <form class="navbar-form" action="searchizin" method="GET">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Bulan..." name="cari">
+                <input type="text" value="" class="form-control" placeholder="Nama santi ..." name="cari">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -158,18 +158,18 @@
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Tambah Data Pembayaran</h4>
-                  <p class="card-category">Syahriah bulanan PPP. Al-Hikmah Al-Fathimiyyah</p>
+                  <h4 class="card-title">Update Perizinan</h4>
+                  <p class="card-category">Perizinan PPP. Al-Hikmah Al-Fathimiyyah</p>
                 </div>
                 <div class="card-body">
-                @foreach($pembayaran as $p)
-                  <form method="post" action=/updatepay>
+                    @foreach($perizinan as $p)
+                  <form method="post" action="/updateizin">
                   {{ csrf_field() }}
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Id Pembayaran</label>
-                          <input type="text" class="form-control" name="id_pembayaran" required="required" value="{{ $p->id_pembayaran }}">
+                          <label class="bmd-label-floating">Id Izin</label>
+                          <input type="text" class="form-control" name="id_izin" required="required" value="{{ $p->id_izin }}">
                         </div>
                       </div>
                     </div>
@@ -177,44 +177,37 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Id Santri</label>
-                          <input type="text" class="form-control" name="id_santri" required="required" value="{{ $p->id_santri }}">
+                          <input type="text" class="form-control" name="id_santri" required="required" value="{{ $p->id_santri }}" >
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Id Admin</label>
-                          <input type="text" class="form-control" name="id_admin" required="required" value="{{ $p->id_admin }}">
+                          <label class="bmd-label-floating">Tanggal Mulai</label>
+                          <input type="date" class="form-control" name="tanggal_mulai" required="required" value="{{ $p->tanggal_mulai }}" >
                         </div>
                       </div>
                     </div>   
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Tanggal Bayar</label>
-                          <input type="date" class="form-control" name="tanggal" required="required" value="{{ $p->tanggal }}">
+                          <label class="bmd-label-floating">Tanggal Selesai</label>
+                          <input type="date" class="form-control" name="tanggal_selesai" required="required" value = "{{ $p->tanggal_selesai }}" >
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Bulan</label>
-                          <input type="text" class="form-control" name="bulan" required="required" value="{{ $p->bulan }}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Nominal</label>
-                          <input type="text" class="form-control"  name="nominal" required="required" value="{{ $p->nominal }}">
+                          <label class="bmd-label-floating">Keterangan</label>
+                          <input type="text" class="form-control" name="keterangan" required="required" value="{{ $p->keterangan }}" >
                         </div>
                       </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary pull-right">Update Pembayaran</button>
+                    
+                    <button type="submit" class="btn btn-primary pull-right">Update Perizinan</button>
                     <div class="clearfix"></div>
                   </form>
                   @endforeach
